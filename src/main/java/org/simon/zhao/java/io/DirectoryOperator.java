@@ -1,6 +1,7 @@
 package org.simon.zhao.java.io;
 
 import java.io.*;
+import java.nio.channels.FileChannel;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
@@ -101,6 +102,20 @@ public class DirectoryOperator {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * Use nio api to copy a file to a destination file
+	 * @param source the source file
+	 * @param destination the destination file
+	 */
+	public static void copyFile(Path source, Path destination) {
+		try {
+			Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	public static void deleteDirectory(String dirStr) {
 		Path dir = Paths.get(dirStr);
