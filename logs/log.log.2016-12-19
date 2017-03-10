@@ -1,0 +1,14 @@
+2016-12-19 15:00:05  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ff5b51f: startup date [Mon Dec 19 15:00:05 CST 2016]; root of context hierarchy
+2016-12-19 15:00:06  [ main:898 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
+2016-12-19 15:01:34  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ff5b51f: startup date [Mon Dec 19 15:01:34 CST 2016]; root of context hierarchy
+2016-12-19 15:01:34  [ main:58 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
+2016-12-19 15:02:39  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ff5b51f: startup date [Mon Dec 19 15:02:39 CST 2016]; root of context hierarchy
+2016-12-19 15:02:39  [ main:52 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
+2016-12-19 15:08:24  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ff5b51f: startup date [Mon Dec 19 15:08:24 CST 2016]; root of context hierarchy
+2016-12-19 15:08:24  [ main:66 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
+2016-12-19 15:12:55  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ff5b51f: startup date [Mon Dec 19 15:12:55 CST 2016]; root of context hierarchy
+2016-12-19 15:12:55  [ main:53 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
+2016-12-19 15:18:28  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@ff5b51f: startup date [Mon Dec 19 15:18:28 CST 2016]; root of context hierarchy
+2016-12-19 15:18:28  [ main:55 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
+2016-12-19 16:13:51  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@484b61fc: startup date [Mon Dec 19 16:13:51 CST 2016]; root of context hierarchy
+2016-12-19 16:13:51  [ main:49 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]

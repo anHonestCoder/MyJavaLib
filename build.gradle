@@ -3,6 +3,8 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
+apply from: './libraries.gradle'
+
 sourceCompatibility = 1.8
 
 repositories {
@@ -10,8 +12,15 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'org.mybatis:mybatis:3.4.1'
-    compile 'mysql:mysql-connector-java:5.1.40'
-    compile 'log4j:log4j:1.2.17'
+    testCompile libraries.junit
+    compile libraries.mybatis
+    compile libraries.mysqlConnector
+    compile libraries.slf4j_log4j12
+    compile libraries.spring_core
+    compile libraries.spring_context
+    compile libraries.quartz
+    compile libraries.quartzJob
+    compile libraries.bouncycastle
+    compile libraries.commons_lang3
+
 }

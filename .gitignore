@@ -43,6 +43,7 @@ venus-*/src/main/java/META-INF/MANIFEST.MF
 *.iws
 .idea
 out
+data
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache

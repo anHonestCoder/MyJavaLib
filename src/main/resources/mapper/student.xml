@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.simon.zhao.java.mybatis.repository.StudentRepository">
+<mapper namespace="org.simon.zhao.mybatis.repository.StudentRepository">
     <resultMap id="studentMap" type="student">
         <constructor>
             <idArg column="id" javaType="string" ></idArg>

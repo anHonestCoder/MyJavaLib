@@ -19,7 +19,7 @@ public class DirectoryOperatorTest {
 	@Test
 	public void testCopyDirectoryRecursion() {
 		File sourceDir = new File("D:\\workspace");
-		File destDir = new File("G:\\workspace");
+		File destDir = new File("J:\\office2016");
 		long start = System.currentTimeMillis();
 		DirectoryOperator.copyFolder(sourceDir, destDir);
 		long end = System.currentTimeMillis();
@@ -29,7 +29,7 @@ public class DirectoryOperatorTest {
 
 	@Test
 	public void testDeleteDirectory() {
-		DirectoryOperator.deleteDirectory("G:\\workspace");
+		DirectoryOperator.deleteDirectory("J:\\GitDemo");
 	}
 
 	@Test

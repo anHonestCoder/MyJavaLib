@@ -1,4 +1,4 @@
-package org.simon.zhao.java.mybatis.entity;
+package org.simon.zhao.mybatis.entity;
 
 /**
  * Created by zhou01.zhao on 2016/11/25.

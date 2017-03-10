@@ -1,15 +1,14 @@
-package org.simon.zhao.java.mybatis;
+package org.simon.zhao.mybatis;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
-import org.simon.zhao.java.mybatis.entity.Student;
-import org.simon.zhao.java.mybatis.repository.StudentRepository;
+import org.simon.zhao.mybatis.entity.Student;
+import org.simon.zhao.mybatis.repository.StudentRepository;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Map;
 
 /**
  * Created by zhou01.zhao on 2016/11/25.

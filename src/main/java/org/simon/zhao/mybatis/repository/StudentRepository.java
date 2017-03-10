@@ -1,7 +1,7 @@
-package org.simon.zhao.java.mybatis.repository;
+package org.simon.zhao.mybatis.repository;
 
 import org.apache.ibatis.annotations.Param;
-import org.simon.zhao.java.mybatis.entity.Student;
+import org.simon.zhao.mybatis.entity.Student;
 
 
 /**
