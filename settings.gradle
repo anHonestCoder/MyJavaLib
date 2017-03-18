@@ -1,2 +1,6 @@
 rootProject.name = 'javaselib'
 
+include 'zz-utils'
+include 'zz-test'
+include 'zz-basic'
+

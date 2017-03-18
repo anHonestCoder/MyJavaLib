@@ -1,26 +1,77 @@
-group 'org.simon.javaLib'
-version '1.0-SNAPSHOT'
+apply from: "./libraries.gradle"
+configure(allprojects) { project ->
 
-apply plugin: 'java'
-
-apply from: './libraries.gradle'
-
-sourceCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testCompile libraries.junit
-    compile libraries.mybatis
-    compile libraries.mysqlConnector
-    compile libraries.slf4j_log4j12
-    compile libraries.spring_core
-    compile libraries.spring_context
-    compile libraries.quartz
-    compile libraries.quartzJob
-    compile libraries.bouncycastle
-    compile libraries.commons_lang3
+    repositories {
+        mavenCentral()
+    }
 
 }
+
+configure(subprojects) { subproject ->
+
+    apply plugin: "idea"
+    apply plugin: "eclipse"
+    apply plugin: "maven"
+
+    apply plugin: 'java'
+
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+    compileJava {
+        sourceCompatibility = 1.7
+        targetCompatibility = 1.7
+    }
+
+    compileTestJava {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+
+    }
+
+    task sourcesJar(type: Jar, dependsOn: classes) {
+        classifier = 'sources'
+        from sourceSets.main.allSource
+    }
+
+
+    artifacts {
+        archives sourcesJar
+    }
+
+}
+
+project ("zz-basic") {
+    description = "basic code"
+
+    dependencies {
+        testCompile libraries.junit
+        compile libraries.mybatis
+        compile libraries.mysqlConnector
+        compile libraries.slf4j_log4j12
+        compile libraries.spring_core
+        compile libraries.spring_context
+        compile libraries.quartz
+        compile libraries.quartzJob
+        compile libraries.bouncycastle
+        compile libraries.commons_lang3
+    }
+
+}
+
+project ( "zz-test" )  {
+    description = "test project"
+
+    dependencies {
+        compile project(":zz-basic")
+    }
+}
+
+project ( "zz-utils" ) {
+    description = "common utils"
+}
+
+task showProjectInfo {
+    println project.group
+}
+
+

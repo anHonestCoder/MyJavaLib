@@ -1,4 +1,0 @@
-2016-12-16 19:29:45  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@484b61fc: startup date [Fri Dec 16 19:29:45 CST 2016]; root of context hierarchy
-2016-12-16 19:29:45  [ main:60 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
-2016-12-16 19:30:42  [ main:0 ] - [ INFO ]  Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@484b61fc: startup date [Fri Dec 16 19:30:42 CST 2016]; root of context hierarchy
-2016-12-16 19:30:42  [ main:48 ] - [ INFO ]  Loading XML bean definitions from class path resource [applicationContext.xml]
