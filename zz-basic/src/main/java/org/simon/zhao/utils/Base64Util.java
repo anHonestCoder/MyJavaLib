@@ -3,7 +3,7 @@ package org.simon.zhao.utils;
 
 /**
  *
- * @author likun.david
+ * @author zhaozhou
  */
 public class Base64Util {
     private static final char[] intToBase64 = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',

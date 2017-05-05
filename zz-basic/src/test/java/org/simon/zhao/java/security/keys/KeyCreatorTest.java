@@ -12,7 +12,7 @@ public class KeyCreatorTest {
 
 	@Test
 	public void testGenerateHmacSHA256Key() throws NoSuchAlgorithmException {
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 20; i++) {
 			String base64Key = KeyCreator.generateHmacSHA256Key();
 			System.out.println(base64Key);
 		}

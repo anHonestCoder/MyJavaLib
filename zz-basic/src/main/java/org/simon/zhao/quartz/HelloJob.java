@@ -13,6 +13,7 @@ public class HelloJob implements Job {
 	Logger logger = LoggerFactory.getLogger(HelloJob.class);
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		logger.info("Hello Quartz!");
+//		logger.info("Hello Quartz!");
+		System.out.println("Hello Quartz");
 	}
 }

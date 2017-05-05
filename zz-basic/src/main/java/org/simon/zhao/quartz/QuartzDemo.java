@@ -18,7 +18,7 @@ public class QuartzDemo {
 				.withIdentity("myTrigger", "group1")
 				.startNow()
 				.withSchedule(SimpleScheduleBuilder.simpleSchedule()
-				.withIntervalInSeconds(40)
+				.withIntervalInSeconds(4)
 				.repeatForever())
 				.build();
 

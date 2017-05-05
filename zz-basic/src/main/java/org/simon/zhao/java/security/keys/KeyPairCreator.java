@@ -13,7 +13,6 @@ import java.security.PublicKey;
 public class KeyPairCreator {
 
 	private static final String ALGORITHM_RSA = "RSA";
-	private static final String ALGORITHM_DSA = "DSA";
 
 		public static void generateRsaKeys(int length) throws Exception {
 			System.out.println("--------------------------generate rsa key pair--------------------------");
