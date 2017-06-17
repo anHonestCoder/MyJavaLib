@@ -46,6 +46,7 @@ project ("zz-basic") {
 
     dependencies {
         compile libraries.junit
+        compile libraries.spring_test
         compile libraries.mybatis
         compile libraries.mysqlConnector
         compile libraries.slf4j_log4j12
@@ -55,6 +56,9 @@ project ("zz-basic") {
         compile libraries.quartzJob
         compile libraries.bouncycastle
         compile libraries.commons_lang3
+        compile libraries.spring_batch_core
+        compile libraries.spring_batch_infrastructure
+        compile libraries.spring_aspects
     }
 
 }

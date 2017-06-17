@@ -1,0 +1,99 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch-2.2.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	">
+
+	<!--start common-->
+	<bean id="jobRepository" class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" ></bean>
+	<bean id="jobLauncher"
+		  class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+	<bean id="transactionManager" class="org.springframework.batch.support.transaction.ResourcelessTransactionManager"></bean>
+	<bean id="lineAggregator" class="org.simon.zhao.spring.batch.aggregator.ReconLineAggregator"></bean>
+	<!--end common-->
+
+	<!--listeners-->
+	<bean id="step1Listener" class="org.simon.zhao.spring.batch.listener.Step1Listener" scope="step"></bean>
+	<bean id="step1Listener1" class="org.simon.zhao.spring.batch.listener.Step1Listener1" scope="step"></bean>
+	<bean id="step2Listener" class="org.simon.zhao.spring.batch.listener.Step2Listener" scope="step"></bean>
+	<bean id="step3Listener" class="org.simon.zhao.spring.batch.listener.Step3Listener" scope="step"></bean>
+
+	<bean id="ccbItemProcessor" class="org.simon.zhao.spring.batch.processor.CCBItemProcessor"></bean>
+	<bean id="ccbFieldSetMapper" class="org.simon.zhao.spring.batch.field.mapping.CCBRecondItemFieldSetMapper"></bean>
+	<bean id="ccbItemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="resource" value="file:#{stepExecutionContext['tempPayBankFilePath']}"></property>
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="delimiter" value="|"></property>
+					</bean>
+				</property>
+				<property name="fieldSetMapper" ref="ccbFieldSetMapper"></property>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="ccbItemWriter" class="org.springframework.batch.item.file.FlatFileItemWriter" scope="step" >
+		<property name="resource" value="file:#{jobParameters[tempPayReconFilePath]}"></property>
+		<property name="lineSeparator" value=""></property>
+		<property name="encoding" value="utf-8"></property>
+		<property name="lineAggregator" ref="lineAggregator"></property>
+	</bean>
+
+	<bean id="downloadTask" scope="step" class="org.simon.zhao.spring.batch.tasklet.DownloadBankFileTasklet" ></bean>
+	<bean id="uploadTask" scope="step" class="org.simon.zhao.spring.batch.tasklet.UploadBankFileTasklet" ></bean>
+	<bean id="decider" class="org.simon.zhao.spring.batch.decider.MyDecider"></bean>
+	<batch:step id="abstractStep" abstract="true">
+		<batch:listeners>
+			<batch:listener ref="step1Listener" before-step-method="beforeStep" after-step-method="afterStep"></batch:listener>
+		</batch:listeners>
+	</batch:step>
+	<batch:job id="job">
+		
+		<batch:decision id="decision" decider="decider">
+			<batch:next on="MENUAL" to="ccbStep1"></batch:next>
+			<batch:next on="AUTO" to="ccbStep3"></batch:next>
+		</batch:decision>
+
+		<batch:step id="ccbStep1" parent="abstractStep" next="ccbStep2">
+
+
+
+			<batch:tasklet ref="downloadTask"></batch:tasklet>
+			<!--<batch:fail on="FAILED" exit-code="CUSTOMED-END"></batch:fail>
+			<batch:next on="*" to="ccbStep2"></batch:next>-->
+			<batch:listeners >
+				<batch:listener ref="step1Listener" before-step-method="beforeStep" after-step-method="afterStep"></batch:listener>
+				<batch:listener ref="step1Listener1" before-step-method="beforeStep" after-step-method="afterStep"></batch:listener>
+
+			</batch:listeners>
+		</batch:step>
+
+		<batch:step id="ccbStep2" next="ccbStep3">
+			<batch:tasklet>
+				<batch:chunk reader="ccbItemReader" writer="ccbItemWriter" processor="ccbItemProcessor"	commit-interval="10"></batch:chunk>
+			</batch:tasklet>
+			<batch:listeners>
+				<batch:listener ref="step2Listener" before-step-method="beforeStep" after-step-method="afterStep"></batch:listener>
+			</batch:listeners>
+		</batch:step>
+
+		<!--step3.upload recond file-->
+		<batch:step id="ccbStep3">
+			<batch:tasklet ref="uploadTask"></batch:tasklet>
+			<batch:listeners>
+				<batch:listener ref="step3Listener" before-step-method="beforeStep" after-step-method="afterStep"></batch:listener>
+			</batch:listeners>
+		</batch:step>
+	</batch:job>
+
+
+
+
+
+</beans>

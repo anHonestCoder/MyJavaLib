@@ -1,4 +1,4 @@
-package org.simon.zhao.spring;
+package org.simon.zhao.spring.base;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

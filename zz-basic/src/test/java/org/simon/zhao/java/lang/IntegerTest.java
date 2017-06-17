@@ -19,5 +19,16 @@ public class IntegerTest {
 		System.out.println(Integer.toBinaryString(value));
 		System.out.println(Integer.toBinaryString(Integer.reverse(value)));
 //		System.out.println(Integer.parseInt("11111111111111111111111111111010",2));
+
+		int result = getValue();
+		System.out.println(result);
 	}
+
+
+
+	public Integer getValue() {
+		return new Integer(1);
+	}
+
+
 }

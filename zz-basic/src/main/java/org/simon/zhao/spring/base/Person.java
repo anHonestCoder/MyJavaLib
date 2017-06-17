@@ -1,4 +1,4 @@
-package org.simon.zhao.spring;
+package org.simon.zhao.spring.base;
 
 /**
  * Created by zhou01.zhao on 2016/12/16.

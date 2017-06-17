@@ -1,4 +1,4 @@
-package org.simon.zhao.spring;
+package org.simon.zhao.spring.base;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
