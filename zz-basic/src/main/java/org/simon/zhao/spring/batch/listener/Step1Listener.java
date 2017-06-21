@@ -35,6 +35,9 @@ public class Step1Listener implements StepExecutionListener {
 //		stepExecution.getJobExecution().getExecutionContext().putString("tempPayBankFilePath", "D:\\apps\\tmp\\input\\KJZF.txt");
 		System.out.println(stepExecution.getExitStatus());
 
+		String localFilePath = "D:\\apps\\tmp\\input\\spdb\\Mer_20170611_9900000366.txt;D:\\apps\\tmp\\input\\spdb\\Mer_20170611_0000000000.txt";
+		stepExecution.getJobExecution().getExecutionContext().putString("localBankFilePath", localFilePath);
+
 		return ExitStatus.COMPLETED;
 	}
 }

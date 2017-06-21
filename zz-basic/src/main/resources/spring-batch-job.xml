@@ -53,16 +53,14 @@
 			<batch:listener ref="step1Listener" before-step-method="beforeStep" after-step-method="afterStep"></batch:listener>
 		</batch:listeners>
 	</batch:step>
-	<batch:job id="job">
-		
+
+	<batch:job id="simpleJob">
 		<batch:decision id="decision" decider="decider">
 			<batch:next on="MENUAL" to="ccbStep1"></batch:next>
 			<batch:next on="AUTO" to="ccbStep3"></batch:next>
 		</batch:decision>
 
 		<batch:step id="ccbStep1" parent="abstractStep" next="ccbStep2">
-
-
 
 			<batch:tasklet ref="downloadTask"></batch:tasklet>
 			<!--<batch:fail on="FAILED" exit-code="CUSTOMED-END"></batch:fail>
@@ -94,6 +92,69 @@
 
 
 
+	<bean id="spdbItemProcessor" class="org.simon.zhao.spring.batch.processor.SPDBItemProcessor"></bean>
+	<bean id="spdbFieldSetMapper" class="org.simon.zhao.spring.batch.field.mapping.SPDBRecondItemFieldSetMapper"></bean>
+	<bean id="spdbItemReader" class="org.springframework.batch.item.file.FlatFileItemReader" scope="step">
+		<property name="linesToSkip" value="1"></property>
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="delimiter" value="|"></property>
+					</bean>
+				</property>
+				<property name="fieldSetMapper" ref="spdbFieldSetMapper"></property>
+
+			</bean>
+		</property>
+	</bean>
+	<bean id="multiResourceReader" class="org.simon.zhao.spring.batch.reader.ReconMultiFileReader" scope="step">
+		<!--<<property name="resources" value="file:#{jobParameters['localBankFilePath']}" />-->
+		<!--<property name="resources" value="file:D:\apps\tmp\input\spdb\Mer_20170611_*.txt"></property>-->
+		<property name="filePaths" value="#{jobParameters['localBankFilePath']}"></property>
+		<property name="delegate" ref="spdbItemReader" />
+	</bean>
+
+	<bean id="spdbItemWriter" class="org.simon.zhao.spring.batch.writer.SPDBItemWriter" scope="step">
+		<property name="resource" value="file://#{jobParameters['tempPayReconFilePath']}"></property>
+		<property name="lineSeparator" value=""></property>
+		<property name="encoding" value="utf-8"></property>
+		<property name="lineAggregator" ref="lineAggregator"></property>
+	</bean>
+
+
+	<batch:job id="multiFileJob">
+
+		<batch:step id="spdbStep1">
+			<batch:tasklet ref="downloadTask"></batch:tasklet>
+			<batch:end on="FAILED" exit-code="SPDB-RECON-FAILED"></batch:end>
+			<batch:next on="*" to="spdbStep2"></batch:next>
+			<batch:listeners>
+				<batch:listener ref="step1Listener" after-step-method="afterStep" before-step-method="beforeStep"></batch:listener>
+			</batch:listeners>
+		</batch:step>
+
+		<!--step2 process bank file-->
+		<batch:step id="spdbStep2">
+			<batch:tasklet>
+				<batch:chunk reader="multiResourceReader" writer="spdbItemWriter" processor="spdbItemProcessor"	commit-interval="100"></batch:chunk>
+			</batch:tasklet>
+			<batch:end on="FAILED" exit-code="SPDB-RECON-FAILED"></batch:end>
+			<batch:next on="*" to="spdbStep3"></batch:next>
+			<batch:listeners>
+				<batch:listener ref="step2Listener" after-step-method="afterStep" before-step-method="beforeStep"></batch:listener>
+			</batch:listeners>
+		</batch:step>
+
+		<!--step3.upload recond file-->
+		<batch:step id="spdbStep3">
+			<batch:tasklet ref="uploadTask"></batch:tasklet>
+			<batch:listeners>
+				<batch:listener ref="step3Listener" after-step-method="afterStep" before-step-method="beforeStep"></batch:listener>
+			</batch:listeners>
+		</batch:step>
+
+	</batch:job>
 
 
 </beans>
