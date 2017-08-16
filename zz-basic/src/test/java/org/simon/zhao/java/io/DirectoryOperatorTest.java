@@ -18,8 +18,8 @@ import java.util.Set;
 public class DirectoryOperatorTest {
 	@Test
 	public void testCopyDirectoryRecursion() {
-		File sourceDir = new File("D:\\workspace");
-		File destDir = new File("J:\\office2016");
+		File sourceDir = new File("D:\\apps\\tmp\\input");
+		File destDir = new File("J:\\");
 		long start = System.currentTimeMillis();
 		DirectoryOperator.copyFolder(sourceDir, destDir);
 		long end = System.currentTimeMillis();

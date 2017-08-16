@@ -3,6 +3,8 @@ package org.simon.zhao.java.main;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 
+import java.util.Calendar;
+
 /**
  * @author Zhaozhou
  * @date 2017/6/7
@@ -11,7 +13,7 @@ public class MainTest {
 
 	@Test
 	public void testSubString() {
-		String s = "0123456789a";
+		/*String s = "0123456789a";
 		int length = s.length();
 
 		int start = length - 6;
@@ -21,6 +23,11 @@ public class MainTest {
 
 		for (int i = 0; i < 10; i++) {
 			System.out.println(Math.random());
-		}
+		}*/
+
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(2017, Calendar.JUNE, 21);
+		System.out.println(calendar.getTimeInMillis());
+
 	}
 }

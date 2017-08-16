@@ -47,6 +47,8 @@ public class DirectoryOperator {
 			//Verify if destinationFolder is already present; If not then create it
 			if (!destinationFolder.exists())
 			{
+				destinationFolder.setWritable(true);
+				System.out.println(destinationFolder.canWrite());
 				destinationFolder.mkdir();
 				System.out.println("Directory created :: " + destinationFolder);
 			}
@@ -59,6 +61,8 @@ public class DirectoryOperator {
 			{
 				File srcFile = new File(sourceFolder, file);
 				File destFile = new File(destinationFolder, file);
+				destFile.setWritable(true);
+				System.out.println(destFile.canWrite());
 
 				//Recursive function call
 				copyFolder(srcFile, destFile);

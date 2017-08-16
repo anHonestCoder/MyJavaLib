@@ -59,6 +59,8 @@ project ("zz-basic") {
         compile libraries.spring_batch_core
         compile libraries.spring_batch_infrastructure
         compile libraries.spring_aspects
+        compile 'org.apache.axis:axis:1.4'
+        compile 'org.dom4j:dom4j:2.0.1'
     }
 
 }
