@@ -1,6 +1,7 @@
 package org.simon.zhao.java.verifysign;
 
-import org.springframework.util.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.security.KeyFactory;
 import java.security.PrivateKey;

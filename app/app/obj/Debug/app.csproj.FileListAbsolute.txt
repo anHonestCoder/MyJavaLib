@@ -1,0 +1,10 @@
+C:\source\repos\app\app\bin\Debug\app.exe.config
+C:\source\repos\app\app\bin\Debug\app.exe
+C:\source\repos\app\app\bin\Debug\app.pdb
+C:\source\repos\app\app\obj\Debug\app.csprojResolveAssemblyReference.cache
+C:\source\repos\app\app\obj\Debug\app.Properties.Resources.resources
+C:\source\repos\app\app\obj\Debug\app.csproj.GenerateResource.Cache
+C:\source\repos\app\app\obj\Debug\app.csproj.CoreCompileInputs.cache
+C:\source\repos\app\app\obj\Debug\app.exe
+C:\source\repos\app\app\obj\Debug\app.pdb
+C:\source\repos\app\app\obj\Debug\app.WinForm.resources

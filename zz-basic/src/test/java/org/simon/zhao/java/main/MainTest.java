@@ -1,8 +1,8 @@
 package org.simon.zhao.java.main;
 
-import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 /**
@@ -11,7 +11,6 @@ import java.util.Calendar;
  */
 public class MainTest {
 
-	@Test
 	public void testSubString() {
 		/*String s = "0123456789a";
 		int length = s.length();
@@ -29,5 +28,12 @@ public class MainTest {
 		calendar.set(2017, Calendar.JUNE, 21);
 		System.out.println(calendar.getTimeInMillis());
 
+	}
+
+	public static void main(String[] args) {
+		float   f   =  19.00f;
+		DecimalFormat decimalFormat=new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+		String p=decimalFormat.format(f);//format 返回的是字符串
+		System.out.print(p);
 	}
 }
