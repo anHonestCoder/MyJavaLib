@@ -5,7 +5,6 @@ import org.simon.zhao.utils.Base64Util;
 import javax.crypto.KeyGenerator;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
 /**
  * @author Zhaozhou

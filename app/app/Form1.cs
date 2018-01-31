@@ -41,8 +41,13 @@ namespace app
 
             //带-的dictionary
             Dictionary<String, int> secondDictionary = new Dictionary<string, int>();
+            Dictionary<String, int>[] secondDictionaryArray = new Dictionary<string, int>[4];
+            for (var i = 0; i < secondDictionaryArray.Length; i++)
+            {
+                secondDictionaryArray[i] = new Dictionary<string, int>();
+            }
 
-                foreach (var str in inputArray)
+            foreach (var str in inputArray)
            {
                 string tmp = str.Trim();
                 if("".Equals(tmp))
@@ -119,11 +124,31 @@ namespace app
                         return;
                     }
                    
-                    if (secondDictionary.ContainsKey(keyStr)){
-                        secondDictionary[keyStr] += value;
-                    } else
+                    if(keyStr.StartsWith("黑") || keyStr.StartsWith("红"))
                     {
-                        secondDictionary.Add(keyStr, value);
+                        if (secondDictionary.ContainsKey(keyStr))
+                        {
+                            secondDictionary[keyStr] += value;
+                        }
+                        else
+                        {
+                            secondDictionary.Add(keyStr, value);
+                        }
+                    } else {
+                        for(var i = 0; i < secondDictionaryArray.Length; i++)
+                        {
+                            if(keyStr.Length == (i+1))
+                            {
+                                if (secondDictionaryArray[i].ContainsKey(keyStr))
+                                {
+                                    secondDictionaryArray[i][keyStr] += value;
+                                }
+                                else
+                                {
+                                    secondDictionaryArray[i].Add(keyStr, value);
+                                }
+                            }
+                        }
                     }
 
 
@@ -142,6 +167,21 @@ namespace app
                               
             }
             result += "\r\n";
+
+            for(var i = 0; i < secondDictionaryArray.Length; i++)
+            {
+                Dictionary<String, int> tmpDic = secondDictionaryArray[i];
+                foreach (var dic in tmpDic)
+                {
+                    if (dic.Value != 0)
+                    {
+
+                        result = result + dic.Key + "-" + dic.Value;
+                        result += "  ";
+                    }
+                }
+            }
+
             foreach (var dic in secondDictionary)
             {
                 if (dic.Value != 0)
@@ -187,20 +227,13 @@ namespace app
                 
                 ContextMenu contextMenu1 = new System.Windows.Forms.ContextMenu();
 
-                MenuItem menuItem = new MenuItem("剪切");
-                menuItem.Click += new EventHandler(CutAction);
-                contextMenu1.MenuItems.Add(menuItem);
-                menuItem = new MenuItem("复制");
+                MenuItem menuItem =  new MenuItem("复制");
                 menuItem.Click += new EventHandler(CopyAction);
                 contextMenu1.MenuItems.Add(menuItem);
                 menuItem = new MenuItem("粘贴");
                 menuItem.Click += new EventHandler(PasteAction);
                 contextMenu1.MenuItems.Add(menuItem);
-                menuItem = new MenuItem("清空");
-                menuItem.Click += new EventHandler(ClearAction);
-                contextMenu1.MenuItems.Add(menuItem);
-
-
+               
                 inputText.ContextMenu = contextMenu1;
             }
 
@@ -214,15 +247,11 @@ namespace app
                 ContextMenu contextMenu = new System.Windows.Forms.ContextMenu();
 
                 MenuItem menuItem = new MenuItem("复制");
-                menuItem.Click += new EventHandler(CutAction);
+                menuItem.Click += new EventHandler(CopyAction);
                 contextMenu.MenuItems.Add(menuItem);
                
                 
-                menuItem = new MenuItem("清空");
-                menuItem.Click += new EventHandler(ClearAction);
-                contextMenu.MenuItems.Add(menuItem);
-
-
+                
                 resultText.ContextMenu = contextMenu;
             }
 
