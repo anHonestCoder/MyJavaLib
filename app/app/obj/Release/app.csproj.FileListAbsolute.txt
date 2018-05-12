@@ -18,3 +18,13 @@ D:\workspace\app\app\obj\Release\app.csproj.GenerateResource.Cache
 D:\workspace\app\app\obj\Release\app.csproj.CoreCompileInputs.cache
 D:\workspace\app\app\obj\Release\启动汇总计算器.exe
 D:\workspace\app\app\obj\Release\启动汇总计算器.pdb
+C:\source\MyJavaLib\app\app\bin\Release\启动汇总计算器.exe.config
+C:\source\MyJavaLib\app\app\bin\Release\启动汇总计算器.exe
+C:\source\MyJavaLib\app\app\bin\Release\启动汇总计算器.pdb
+C:\source\MyJavaLib\app\app\obj\Release\app.csprojResolveAssemblyReference.cache
+C:\source\MyJavaLib\app\app\obj\Release\app.WinForm.resources
+C:\source\MyJavaLib\app\app\obj\Release\app.Properties.Resources.resources
+C:\source\MyJavaLib\app\app\obj\Release\app.csproj.GenerateResource.Cache
+C:\source\MyJavaLib\app\app\obj\Release\app.csproj.CoreCompileInputs.cache
+C:\source\MyJavaLib\app\app\obj\Release\启动汇总计算器.exe
+C:\source\MyJavaLib\app\app\obj\Release\启动汇总计算器.pdb
